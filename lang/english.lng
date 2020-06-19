@@ -1,0 +1,37 @@
+﻿##grflangid 0x01
+STR_GRF_NAME								:Wannaroo Rails
+STR_GRF_DESCRIPTION							:{}The default railtypes, enhanced with customisable costs, speed limits, signals.{}{}Trains can run on their usual railtype as well as later railtypes. (RAIL engines/wagons can run on RAIL, ELRL, MONO, MGLV; ELRL => ELRL, MONO, MGLV, etc.){}{}License: GPL v2
+STR_GRF_URL									:https://github.com/jrook1445/wannaroo-rails
+
+STR_MIN_OPENTTD_VERSION						:This NewGRF requires OpenTTD version 1.9.0 or later.
+
+STR_PARAM_CONSTRUCTION_COST_RAIL			:Rail construction cost factor
+STR_PARAM_CONSTRUCTION_COST_RAIL_DESC		:default 8, min 0, max 65525
+STR_PARAM_SPEED_LIMIT_RAIL					:Rail speed limit
+STR_PARAM_SPEED_LIMIT_RAIL_DESC				:speed limit in mph: default 125, min 0 (no limit), max 65525
+
+STR_PARAM_CONSTRUCTION_COST_ELRL			:Electric Rail construction cost factor
+STR_PARAM_CONSTRUCTION_COST_ELRL_DESC		:default 12, min 0, max 65525
+STR_PARAM_SPEED_LIMIT_ELRL					:Electric Rail speed limit
+STR_PARAM_SPEED_LIMIT_ELRL_DESC				:speed limit in mph: default 165, min 0 (no limit), max 65525
+
+STR_PARAM_CONSTRUCTION_COST_MONO			:Monorail construction cost factor
+STR_PARAM_CONSTRUCTION_COST_MONO_DESC		:default 16, min 0, max 65525
+STR_PARAM_SPEED_LIMIT_MONO					:Monorail speed limit
+STR_PARAM_SPEED_LIMIT_MONO_DESC				:speed limit in mph: default 210, min 0 (no limit), max 65525
+
+STR_PARAM_CONSTRUCTION_COST_MGLV			:Maglev construction cost factor
+STR_PARAM_CONSTRUCTION_COST_MGLV_DESC		:default 24, min 0, max 65525
+STR_PARAM_SPEED_LIMIT_MGLV					:Maglev speed limit
+STR_PARAM_SPEED_LIMIT_MGLV_DESC				:speed limit in mph: default 400, min 0 (no limit), max 65525
+
+STR_PARAM_SIGNALS_DEFAULT					:Default
+STR_PARAM_SIGNALS_NUTS						:NUTS
+STR_PARAM_SIGNALS_METRO						:Metro
+
+STR_PARAM_CUSTOMSIGNALS_NAME                :Semaphore signals
+STR_PARAM_CUSTOMSIGNALS_DESC                :Default (no change), light signals from NUTS 0.7.9, metro signals from termite 0.3
+
+STR_PARAM_ENABLE_NG_NAME                    :Narrow gauge
+STR_PARAM_ENABLE_NG_DESC                    :On: Allow narrow gauge trains{}{}Currently supported:{}Iron Horse, North Korean Trains Set{}Railtypes: ELNG, NAAE, NAAN
+

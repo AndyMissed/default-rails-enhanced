@@ -1,0 +1,357 @@
+/* wannaroo-rails.pnml */
+
+/*
+    License: GPL v2
+    https://github.com/jrook1445/wannaroo-rails
+*/
+
+if (ttd_platform != PLATFORM_OPENTTD || openttd_version < version_openttd(1, 9, 0)) {
+    error(FATAL, REQUIRES_OPENTTD, string(STR_MIN_OPENTTD_VERSION));
+    exit;
+}
+
+grf {
+    grfid: "jdr\07";
+    name: string(STR_GRF_NAME);
+    desc: string(STR_GRF_DESCRIPTION);
+    version: 1000;
+    min_compatible_version: 1000;
+    url: string(STR_GRF_URL);
+
+    param {
+        param_construction_cost_rail {
+            type: int;
+            name: string(STR_PARAM_CONSTRUCTION_COST_RAIL);
+            desc: string(STR_PARAM_CONSTRUCTION_COST_RAIL_DESC);
+            min_value: 0;
+            max_value: 65525;
+            def_value: 8;
+        }
+    }
+
+    param {
+        param_speed_limit_rail {
+            type: int;
+            name: string(STR_PARAM_SPEED_LIMIT_RAIL);
+            desc: string(STR_PARAM_SPEED_LIMIT_RAIL_DESC);
+            min_value: 0;
+            max_value: 65525;
+            def_value: 125;
+        }
+    }
+
+    param {
+        param_construction_cost_elrl {
+            type: int;
+            name: string(STR_PARAM_CONSTRUCTION_COST_ELRL);
+            desc: string(STR_PARAM_CONSTRUCTION_COST_ELRL_DESC);
+            min_value: 0;
+            max_value: 65525;
+            def_value: 12;
+        }
+    }
+
+    param {
+        param_speed_limit_elrl {
+            type: int;
+            name: string(STR_PARAM_SPEED_LIMIT_ELRL);
+            desc: string(STR_PARAM_SPEED_LIMIT_ELRL_DESC);
+            min_value: 0;
+            max_value: 65525;
+            def_value: 165;
+        }
+    }
+
+    param {
+        param_construction_cost_mono {
+            type: int;
+            name: string(STR_PARAM_CONSTRUCTION_COST_MONO);
+            desc: string(STR_PARAM_CONSTRUCTION_COST_MONO_DESC);
+            min_value: 0;
+            max_value: 65525;
+            def_value: 16;
+        }
+    }
+
+    param {
+        param_speed_limit_mono {
+            type: int;
+            name: string(STR_PARAM_SPEED_LIMIT_MONO);
+            desc: string(STR_PARAM_SPEED_LIMIT_MONO_DESC);
+            min_value: 0;
+            max_value: 65525;
+            def_value: 210;
+        }
+    }
+
+    param {
+        param_construction_cost_mglv {
+            type: int;
+            name: string(STR_PARAM_CONSTRUCTION_COST_MGLV);
+            desc: string(STR_PARAM_CONSTRUCTION_COST_MGLV_DESC);
+            min_value: 0;
+            max_value: 65525;
+            def_value: 24;
+        }
+    }
+
+    param {
+        param_speed_limit_mglv {
+            type: int;
+            name: string(STR_PARAM_SPEED_LIMIT_MGLV);
+            desc: string(STR_PARAM_SPEED_LIMIT_MGLV_DESC);
+            min_value: 0;
+            max_value: 65525;
+            def_value: 400;
+        }
+    }
+
+    param {
+        param_customsignals {
+            type: int;
+            name: string(STR_PARAM_CUSTOMSIGNALS_NAME);
+            desc: string(STR_PARAM_CUSTOMSIGNALS_DESC);
+            min_value: 0;
+            max_value: 2;
+            def_value: 0;
+            names: {
+                0: string(STR_PARAM_SIGNALS_DEFAULT);
+                1: string(STR_PARAM_SIGNALS_NUTS);
+                2: string(STR_PARAM_SIGNALS_METRO);
+            };
+        }
+    }
+
+    param {
+        param_enable_ng {
+            type: bool;
+            name: string(STR_PARAM_ENABLE_NG_NAME);
+            desc: string(STR_PARAM_ENABLE_NG_DESC);
+            def_value: 0;
+        }
+    }
+
+}
+
+// jrook 20190120
+// from termite 0.3: metro signals
+// from NUTS 0.7.9: semaphore light signals
+
+// termite 0.3 metro signals
+template template_metro_signals(x, y) {
+    //[x+left_x, upper_y, width, height, offset_x, offset_y]
+    [x ,    y, 20, 30, -10, -30] //sw
+    [x+ 30, y, 20, 30, -10, -30] //ne
+    [x+ 60, y, 20, 30, -10, -30] //nw
+    [x+ 90, y, 20, 30, -10, -30] //se
+    [x+120, y, 20, 30, -10, -30] //e
+    [x+150, y, 20, 30, -10, -30] //w
+    [x+180, y, 20, 30, -10, -28] //s
+    [x+210, y, 20, 30, -10, -28] //n
+}
+
+// NUTS 0.7.9 semaphore light signals
+template nuts_signals(x, y) {
+    [x+0,   25*y, 24, 24,  -5, -19]
+    [x+25,  25*y, 24, 24, -20, -13]
+    [x+50,  25*y, 24, 24,  -4, -13]
+    [x+75,  25*y, 24, 24, -17, -20]
+    [x+100, 25*y, 24, 24, -13, -18]
+    [x+125, 25*y, 24, 24, -12, -17]
+    [x+150, 25*y, 24, 24,  -9, -17]
+    [x+175, 25*y, 24, 24, -12, -12]
+}
+
+spriteset (spriteset_metro_signals_block_green, "gfx/signals_block.png") { template_metro_signals(0,0) }
+spriteset (spriteset_metro_signals_block_red, "gfx/signals_block.png") { template_metro_signals(0,40) }
+spriteset (spriteset_metro_signals_block_combo_green, "gfx/signals_block_combo.png") { template_metro_signals(0,0) }
+spriteset (spriteset_metro_signals_block_combo_red, "gfx/signals_block_combo.png") { template_metro_signals(0,40) }
+spriteset (spriteset_metro_signals_block_entry_green, "gfx/signals_block_entry.png") { template_metro_signals(0,0) }
+spriteset (spriteset_metro_signals_block_entry_red, "gfx/signals_block_entry.png") { template_metro_signals(0,40) }
+spriteset (spriteset_metro_signals_block_exit_green, "gfx/signals_block_exit.png") { template_metro_signals(0,0) }
+spriteset (spriteset_metro_signals_block_exit_red, "gfx/signals_block_exit.png") { template_metro_signals(0,40) }
+spriteset (spriteset_metro_signals_path_oneway_green, "gfx/signals_path_oneway.png") { template_metro_signals(0,0) }
+spriteset (spriteset_metro_signals_path_oneway_red, "gfx/signals_path_oneway.png") { template_metro_signals(0,40) }
+spriteset (spriteset_metro_signals_path_twoway_green, "gfx/signals_path_twoway.png") { template_metro_signals(0,0) }
+spriteset (spriteset_metro_signals_path_twoway_red, "gfx/signals_path_twoway.png") { template_metro_signals(0,40) }
+
+spriteset (nuts_signals_block_green, "gfx/nuts_signals.png") { nuts_signals(300,0) }
+spriteset (nuts_signals_block_red, "gfx/nuts_signals.png") { nuts_signals(300,1) }
+spriteset (nuts_signals_entry_green, "gfx/nuts_signals.png") { nuts_signals(300,2) }
+spriteset (nuts_signals_entry_red, "gfx/nuts_signals.png") { nuts_signals(300,3) }
+spriteset (nuts_signals_exit_green, "gfx/nuts_signals.png") { nuts_signals(300,4) }
+spriteset (nuts_signals_exit_red, "gfx/nuts_signals.png") { nuts_signals(300,5) }
+spriteset (nuts_signals_combo_green, "gfx/nuts_signals.png") { nuts_signals(300,6) }
+spriteset (nuts_signals_combo_red, "gfx/nuts_signals.png") { nuts_signals(300,7) }
+spriteset (nuts_signals_2wayPBS_green, "gfx/nuts_signals.png") { nuts_signals(300,8) }
+spriteset (nuts_signals_2wayPBS_red, "gfx/nuts_signals.png") { nuts_signals(300,9) }
+spriteset (nuts_signals_1wayPBS_green, "gfx/nuts_signals.png") { nuts_signals(300,10) }
+spriteset (nuts_signals_1wayPBS_red, "gfx/nuts_signals.png") { nuts_signals(300,11) }
+
+switch (FEAT_RAILTYPES, SELF, switch_signals_metro, extra_callback_info2 & 0x00FFFFFF) {
+    //semaphore signals
+    //TT         VV        SS
+    (0 << 16) | (1 << 8) | 0 : spriteset_metro_signals_block_red;
+    (0 << 16) | (1 << 8) | 1 : spriteset_metro_signals_block_green;
+    (1 << 16) | (1 << 8) | 0 : spriteset_metro_signals_block_entry_red;
+    (1 << 16) | (1 << 8) | 1 : spriteset_metro_signals_block_entry_green;
+    (2 << 16) | (1 << 8) | 0 : spriteset_metro_signals_block_exit_red;
+    (2 << 16) | (1 << 8) | 1 : spriteset_metro_signals_block_exit_green;
+    (3 << 16) | (1 << 8) | 0 : spriteset_metro_signals_block_combo_red;
+    (3 << 16) | (1 << 8) | 1 : spriteset_metro_signals_block_combo_green;
+    (4 << 16) | (1 << 8) | 0 : spriteset_metro_signals_path_twoway_red;
+    (4 << 16) | (1 << 8) | 1 : spriteset_metro_signals_path_twoway_green;
+    (5 << 16) | (1 << 8) | 0 : spriteset_metro_signals_path_oneway_red;
+    (5 << 16) | (1 << 8) | 1 : spriteset_metro_signals_path_oneway_green;
+    //electric signals are not defined, will use standard signals
+    CB_FAILED;
+}
+
+switch(FEAT_RAILTYPES, SELF, nuts_signal_switch_block, (extra_callback_info2 & 0x000000FF)) {
+    0: nuts_signals_block_red;
+    1: nuts_signals_block_green;
+}
+switch(FEAT_RAILTYPES, SELF, nuts_signal_switch_entry, (extra_callback_info2 & 0x000000FF)) {
+    0: nuts_signals_entry_red;
+    1: nuts_signals_entry_green;
+}
+switch(FEAT_RAILTYPES, SELF, nuts_signal_switch_exit, (extra_callback_info2 & 0x000000FF)) {
+    0: nuts_signals_exit_red;
+    1: nuts_signals_exit_green;
+}
+switch(FEAT_RAILTYPES, SELF, nuts_signal_switch_combo, (extra_callback_info2 & 0x000000FF)) {
+    0: nuts_signals_combo_red;
+    1: nuts_signals_combo_green;
+}
+switch(FEAT_RAILTYPES, SELF, nuts_signal_switch_2wayPBS, (extra_callback_info2 & 0x000000FF)) {
+    0: nuts_signals_2wayPBS_red;
+    1: nuts_signals_2wayPBS_green;
+}
+switch(FEAT_RAILTYPES, SELF, nuts_signal_switch_1wayPBS, (extra_callback_info2 & 0x000000FF)) {
+    0: nuts_signals_1wayPBS_red;
+    1: nuts_signals_1wayPBS_green;
+}
+
+switch(FEAT_RAILTYPES, SELF, nuts_signal_switch_type, (extra_callback_info2 & 0x00FF0000) >> 16) {
+    0: nuts_signal_switch_block;
+    1: nuts_signal_switch_entry;
+    2: nuts_signal_switch_exit;
+    3: nuts_signal_switch_combo;
+    4: nuts_signal_switch_2wayPBS;
+    5: nuts_signal_switch_1wayPBS;
+    CB_FAILED;
+}
+
+switch(FEAT_RAILTYPES, SELF, switch_signals_nuts, (extra_callback_info2 & 0x0000FF00) >> 8) {
+    1: nuts_signal_switch_type; //semaphore
+    CB_FAILED;
+}
+
+switch (FEAT_RAILTYPES, SELF, switch_signals, param_customsignals) {
+    1: switch_signals_nuts;
+    2: switch_signals_metro;
+    CB_FAILED;
+}
+
+// jrook 20190120
+// end copy/paste from termite 0.3 and NUTS 0.7.9
+
+// Railtypes
+railtypetable {
+    RAIL,
+    ELRL,
+    MONO,
+    MGLV,
+    NAAN, // Iron Horse, North Korean Trains
+    ELNG, // Iron Horse
+    //NAAd, // North Korean Trains
+    NAAE // North Korean Trains
+}
+
+item (FEAT_RAILTYPES, rt_rail) {
+    property {
+        label : "RAIL";
+        compatible_railtype_list : ["ELRL", "MONO", "MGLV"];
+        powered_railtype_list : ["RAIL", "ELRL", "MONO", "MGLV"];
+        construction_cost : param_construction_cost_rail;
+        speed_limit : param_speed_limit_rail mph ;
+    }
+    graphics {
+        signals: switch_signals;
+    }
+}
+
+item (FEAT_RAILTYPES, rt_elrl) {
+    property {
+        label : "ELRL";
+        compatible_railtype_list : ["MONO", "MGLV"];
+        powered_railtype_list : ["ELRL", "MONO", "MGLV"];
+        construction_cost : param_construction_cost_elrl;
+        speed_limit : param_speed_limit_elrl mph ;
+    }
+    graphics {
+        signals: switch_signals;
+    }
+}
+
+item (FEAT_RAILTYPES, rt_mono) {
+    property {
+        label : "MONO";
+        compatible_railtype_list : ["MGLV"];
+        powered_railtype_list : ["MONO", "MGLV"];
+        construction_cost : param_construction_cost_mono;
+        speed_limit : param_speed_limit_mono mph ;
+    }
+    graphics {
+        signals: switch_signals;
+    }
+}
+
+item (FEAT_RAILTYPES, rt_mglv) {
+    property {
+        label : "MGLV";
+        compatible_railtype_list : [];
+        powered_railtype_list : ["MGLV"];
+        construction_cost : param_construction_cost_mglv;
+        speed_limit : param_speed_limit_mglv mph ;
+    }
+    graphics {
+        signals: switch_signals;
+    }
+}
+
+// jrook 20190517
+// begin narrow guage
+// for Iron Horse, North Korean Trains
+if (param_enable_ng) {
+
+item (FEAT_RAILTYPES, rt_naan) {
+    property {
+        label : "NAAN";
+        compatible_railtype_list : ["RAIL", "ELRL", "MONO", "MGLV"];
+        powered_railtype_list : ["RAIL", "ELRL", "MONO", "MGLV"];
+        railtype_flags: bitmask(RAILTYPE_FLAG_HIDDEN);
+    }
+}
+
+item (FEAT_RAILTYPES, rt_elng) {
+    property {
+        label : "ELNG";
+        compatible_railtype_list : ["ELRL", "MONO", "MGLV"];
+        powered_railtype_list : ["ELRL", "MONO", "MGLV"];
+        railtype_flags: bitmask(RAILTYPE_FLAG_HIDDEN);
+    }
+}
+
+item (FEAT_RAILTYPES, rt_naae) {
+    property {
+        label : "NAAE";
+        compatible_railtype_list : ["ELRL", "MONO", "MGLV"];
+        powered_railtype_list : ["ELRL", "MONO", "MGLV"];
+        railtype_flags: bitmask(RAILTYPE_FLAG_HIDDEN);
+    }
+}
+
+}
+// end narrow gauge
+
