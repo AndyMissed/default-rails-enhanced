@@ -1,3 +1,9 @@
+# FORK WORK-IN-PROGRESS
+
+The plan is to expand features, starting with cornering speed limits.
+
+Until then, I leave the rest of the description untouched:
+
 # Wannaroo Rails
 
 NewGRF for OpenTTD - Default railtypes with a few extras.
