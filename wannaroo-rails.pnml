@@ -41,6 +41,17 @@ grf {
     }
 
     param {
+        param_curve_speed_multiplier_rail {
+            type: int;
+            name: string(STR_PARAM_CURVE_SPEED_MULTIPLIER_RAIL);
+            desc: string(STR_PARAM_CURVE_SPEED_MULTIPLIER_RAIL_DESC);
+            min_value: 0;
+            max_value: 255;
+            def_value: 2;
+        }
+    }
+
+    param {
         param_construction_cost_elrl {
             type: int;
             name: string(STR_PARAM_CONSTRUCTION_COST_ELRL);
@@ -59,6 +70,17 @@ grf {
             min_value: 0;
             max_value: 65525;
             def_value: 165;
+        }
+    }
+
+    param {
+        param_curve_speed_multiplier_elrl {
+            type: int;
+            name: string(STR_PARAM_CURVE_SPEED_MULTIPLIER_ELRL);
+            desc: string(STR_PARAM_CURVE_SPEED_MULTIPLIER_ELRL_DESC);
+            min_value: 0;
+            max_value: 255;
+            def_value: 2;
         }
     }
 
@@ -85,6 +107,17 @@ grf {
     }
 
     param {
+        param_curve_speed_multiplier_mono {
+            type: int;
+            name: string(STR_PARAM_CURVE_SPEED_MULTIPLIER_MONO);
+            desc: string(STR_PARAM_CURVE_SPEED_MULTIPLIER_MONO_DESC);
+            min_value: 0;
+            max_value: 255;
+            def_value: 3;
+        }
+    }
+
+    param {
         param_construction_cost_mglv {
             type: int;
             name: string(STR_PARAM_CONSTRUCTION_COST_MGLV);
@@ -103,6 +136,17 @@ grf {
             min_value: 0;
             max_value: 65525;
             def_value: 400;
+        }
+    }
+
+    param {
+        param_curve_speed_multiplier_mglv {
+            type: int;
+            name: string(STR_PARAM_CURVE_SPEED_MULTIPLIER_MGLV);
+            desc: string(STR_PARAM_CURVE_SPEED_MULTIPLIER_MGLV_DESC);
+            min_value: 0;
+            max_value: 255;
+            def_value: 4;
         }
     }
 
@@ -275,6 +319,7 @@ item (FEAT_RAILTYPES, rt_rail) {
         powered_railtype_list : ["RAIL", "ELRL", "MONO", "MGLV"];
         construction_cost : param_construction_cost_rail;
         speed_limit : param_speed_limit_rail mph ;
+        curve_speed_multiplier : param_curve_speed_multiplier_rail;
     }
     graphics {
         signals: switch_signals;
@@ -288,6 +333,7 @@ item (FEAT_RAILTYPES, rt_elrl) {
         powered_railtype_list : ["ELRL", "MONO", "MGLV"];
         construction_cost : param_construction_cost_elrl;
         speed_limit : param_speed_limit_elrl mph ;
+        curve_speed_multiplier : param_curve_speed_multiplier_elrl;
     }
     graphics {
         signals: switch_signals;
@@ -301,6 +347,7 @@ item (FEAT_RAILTYPES, rt_mono) {
         powered_railtype_list : ["MONO", "MGLV"];
         construction_cost : param_construction_cost_mono;
         speed_limit : param_speed_limit_mono mph ;
+        curve_speed_multiplier : param_curve_speed_multiplier_mono;
     }
     graphics {
         signals: switch_signals;
@@ -314,6 +361,7 @@ item (FEAT_RAILTYPES, rt_mglv) {
         powered_railtype_list : ["MGLV"];
         construction_cost : param_construction_cost_mglv;
         speed_limit : param_speed_limit_mglv mph ;
+        curve_speed_multiplier : param_curve_speed_multiplier_mglv;
     }
     graphics {
         signals: switch_signals;
