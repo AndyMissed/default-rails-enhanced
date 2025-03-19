@@ -1,5 +1,5 @@
 #!/bin/bash
 rm -rf .nmlcache
-rm -rf wannaroo-rails
-rm wannaroo-rails.tar wannaroo-rails.grf wannaroo-rails.nml
+rm -rf default-rails-enhanced
+rm default-rails-enhanced.tar default-rails-enhanced.grf default-rails-enhanced.nml
 
