@@ -1,7 +1,7 @@
 ﻿##grflangid 0x01
-STR_GRF_NAME								:Wannaroo Rails
-STR_GRF_DESCRIPTION							:{}The default railtypes, enhanced with customisable costs, speed limits, signals.{}{}Trains can run on their usual railtype as well as later railtypes. (RAIL engines/wagons can run on RAIL, ELRL, MONO, MGLV; ELRL => ELRL, MONO, MGLV, etc.){}{}License: GPL v2
-STR_GRF_URL									:https://github.com/jrook1445/wannaroo-rails
+STR_GRF_NAME								:Default Rails Enhanced
+STR_GRF_DESCRIPTION							:{}The default railtypes, enhanced with customisable costs, speed limits, signals, and turn speed limits.{}{}Trains can run on their usual railtype as well as later railtypes. (RAIL engines/wagons can run on RAIL, ELRL, MONO, MGLV; ELRL => ELRL, MONO, MGLV, etc.){}{}License: GPL v2
+STR_GRF_URL									:https://github.com/AndyMissed/default-rails-enhanced
 
 STR_MIN_OPENTTD_VERSION						:This NewGRF requires OpenTTD version 1.9.0 or later.
 
