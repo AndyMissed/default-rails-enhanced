@@ -10,28 +10,28 @@ STR_PARAM_CONSTRUCTION_COST_RAIL_DESC		        :default 8, min 0, max 65525
 STR_PARAM_SPEED_LIMIT_RAIL					          :Rail speed limit
 STR_PARAM_SPEED_LIMIT_RAIL_DESC				          :speed limit in mph: default 125, min 0 (no limit), max 65525
 STR_PARAM_CURVE_SPEED_MULTIPLIER_RAIL         :Rail curve speed limit factor
-STR_PARAM_CURVE_SPEED_MULTIPLIER_RAIL_DESC      :default 2, min 0 (unlimited), max 255
+STR_PARAM_CURVE_SPEED_MULTIPLIER_RAIL_DESC      :default 2, min 1, max 255
 
 STR_PARAM_CONSTRUCTION_COST_ELRL			        :Electric Rail construction cost factor
 STR_PARAM_CONSTRUCTION_COST_ELRL_DESC		        :default 12, min 0, max 65525
 STR_PARAM_SPEED_LIMIT_ELRL					          :Electric Rail speed limit
 STR_PARAM_SPEED_LIMIT_ELRL_DESC				          :speed limit in mph: default 165, min 0 (no limit), max 65525
 STR_PARAM_CURVE_SPEED_MULTIPLIER_ELRL         :Electric Rail curve speed limit factor
-STR_PARAM_CURVE_SPEED_MULTIPLIER_ELRL_DESC      :default 2, min 0 (unlimited), max 255
+STR_PARAM_CURVE_SPEED_MULTIPLIER_ELRL_DESC      :default 2, min 1, max 255
 
 STR_PARAM_CONSTRUCTION_COST_MONO			        :Monorail construction cost factor
 STR_PARAM_CONSTRUCTION_COST_MONO_DESC		        :default 16, min 0, max 65525
 STR_PARAM_SPEED_LIMIT_MONO					          :Monorail speed limit
 STR_PARAM_SPEED_LIMIT_MONO_DESC				          :speed limit in mph: default 210, min 0 (no limit), max 65525
 STR_PARAM_CURVE_SPEED_MULTIPLIER_MONO         :Monorail curve speed limit factor
-STR_PARAM_CURVE_SPEED_MULTIPLIER_MONO_DESC      :default 3, min 0 (unlimited), max 255
+STR_PARAM_CURVE_SPEED_MULTIPLIER_MONO_DESC      :default 3, min 1, max 255
 
 STR_PARAM_CONSTRUCTION_COST_MGLV			        :Maglev construction cost factor
 STR_PARAM_CONSTRUCTION_COST_MGLV_DESC		        :default 24, min 0, max 65525
 STR_PARAM_SPEED_LIMIT_MGLV					          :Maglev speed limit
 STR_PARAM_SPEED_LIMIT_MGLV_DESC				          :speed limit in mph: default 400, min 0 (no limit), max 65525
 STR_PARAM_CURVE_SPEED_MULTIPLIER_MGLV         :Maglev curve speed limit factor
-STR_PARAM_CURVE_SPEED_MULTIPLIER_MGLV_DESC      :default 4, min 0 (unlimited), max 255
+STR_PARAM_CURVE_SPEED_MULTIPLIER_MGLV_DESC      :default 4, min 1, max 255
 
 STR_PARAM_SIGNALS_DEFAULT					:Default
 STR_PARAM_SIGNALS_NUTS						:NUTS
