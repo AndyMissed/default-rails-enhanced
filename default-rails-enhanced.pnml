@@ -14,7 +14,7 @@ if (ttd_platform != PLATFORM_OPENTTD || openttd_version < version_openttd(1, 9, 
 }
 
 grf {
-    grfid: "jdr\07";
+    grfid: "AMI\01";
     name: string(STR_GRF_NAME);
     desc: string(STR_GRF_DESCRIPTION);
     version: 1000;
@@ -178,16 +178,6 @@ grf {
         }
     }
 
-
-    param {
-        param_enable_compat {
-            type: bool;
-            name: string(STR_PARAM_ENABLE_COMPAT_NAME);
-            desc: string(STR_PARAM_ENABLE_COMPAT_DESC);
-            def_value: 0;
-        }
-    }
-
 }
 
 // jrook 20190120
@@ -328,10 +318,8 @@ railtypetable {
 item (FEAT_RAILTYPES, rt_rail) {
     property {
         label : "RAIL";
-        if (param_enable_compat) {
-            compatible_railtype_list : ["ELRL", "MONO", "MGLV"];
-            powered_railtype_list : ["RAIL", "ELRL", "MONO", "MGLV"];
-        }
+        compatible_railtype_list : ["ELRL"];
+        powered_railtype_list : ["RAIL", "ELRL"];
         construction_cost : param_construction_cost_rail;
         speed_limit : param_speed_limit_rail mph ;
         curve_speed_multiplier : param_curve_speed_multiplier_rail;
@@ -344,10 +332,8 @@ item (FEAT_RAILTYPES, rt_rail) {
 item (FEAT_RAILTYPES, rt_elrl) {
     property {
         label : "ELRL";
-        if (param_enable_compat) {
-            compatible_railtype_list : ["MONO", "MGLV"];
-            powered_railtype_list : ["ELRL", "MONO", "MGLV"];
-        }
+        compatible_railtype_list : [];
+        powered_railtype_list : ["ELRL"];
         construction_cost : param_construction_cost_elrl;
         speed_limit : param_speed_limit_elrl mph ;
         curve_speed_multiplier : param_curve_speed_multiplier_elrl;
@@ -360,10 +346,8 @@ item (FEAT_RAILTYPES, rt_elrl) {
 item (FEAT_RAILTYPES, rt_mono) {
     property {
         label : "MONO";
-        if (param_enable_compat) {
-            compatible_railtype_list : ["MGLV"];
-            powered_railtype_list : ["MONO", "MGLV"];
-        }
+        compatible_railtype_list : [];
+        powered_railtype_list : ["MONO"];
         construction_cost : param_construction_cost_mono;
         speed_limit : param_speed_limit_mono mph ;
         curve_speed_multiplier : param_curve_speed_multiplier_mono;
@@ -376,10 +360,8 @@ item (FEAT_RAILTYPES, rt_mono) {
 item (FEAT_RAILTYPES, rt_mglv) {
     property {
         label : "MGLV";
-        if (param_enable_compat) {
-            compatible_railtype_list : [];
-            powered_railtype_list : ["MGLV"];
-        }
+        compatible_railtype_list : [];
+        powered_railtype_list : ["MGLV"];
         construction_cost : param_construction_cost_mglv;
         speed_limit : param_speed_limit_mglv mph ;
         curve_speed_multiplier : param_curve_speed_multiplier_mglv;
