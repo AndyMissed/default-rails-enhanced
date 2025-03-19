@@ -11,7 +11,7 @@ then
     cp LICENSE default-rails-enhanced/license.txt
     cp changelog.txt default-rails-enhanced
     tar cvf default-rails-enhanced.tar default-rails-enhanced
-    cp -i default-rails-enhanced.tar $HOME/.openttd/newgrf
+    cp -i default-rails-enhanced.tar $HOME/.var/app/com.valvesoftware.Steam/data/openttd/newgrf
     echo -e "\e[92m*** build successful ***"
 else
     echo -e "\e[91m*** nmlc could not build newgrf ***"
