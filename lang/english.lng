@@ -42,7 +42,3 @@ STR_PARAM_CUSTOMSIGNALS_DESC                :Default (no change), light signals 
 
 STR_PARAM_ENABLE_NG_NAME                    :Narrow gauge
 STR_PARAM_ENABLE_NG_DESC                    :On: Allow narrow gauge trains{}{}Currently supported:{}Iron Horse, North Korean Trains Set{}Railtypes: ELNG, NAAE, NAAN
-
-STR_PARAM_ENABLE_COMPAT_NAME                :Rail compatibility
-STR_PARAM_ENABLE_COMPAT_DESC                :On: Allow trains on tracks of higher tiers (Rail>Electric>Monorail>Maglev){}{}Disabled by default, because I don't like seeing duplicate wagons
-
