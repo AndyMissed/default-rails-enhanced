@@ -1,6 +1,6 @@
 ﻿##grflangid 0x01
 STR_GRF_NAME								:Default Rails Enhanced
-STR_GRF_DESCRIPTION							:{}The default railtypes, enhanced with customisable costs, speed limits, signals, and turn speed limits.{}{}Trains can run on their usual railtype as well as later railtypes. (RAIL engines/wagons can run on RAIL, ELRL, MONO, MGLV; ELRL => ELRL, MONO, MGLV, etc.){}{}License: GPL v2
+STR_GRF_DESCRIPTION							:{}The default railtypes, enhanced with faster turn speeds and other customizable settings.{}{}Forked from Wannaroo Rails.{}{}License: GPL v2
 STR_GRF_URL									:https://github.com/AndyMissed/default-rails-enhanced
 
 STR_MIN_OPENTTD_VERSION						:This NewGRF requires OpenTTD version 1.9.0 or later.
@@ -9,29 +9,29 @@ STR_PARAM_CONSTRUCTION_COST_RAIL			        :Rail construction cost factor
 STR_PARAM_CONSTRUCTION_COST_RAIL_DESC		        :default 8, min 0, max 65525
 STR_PARAM_SPEED_LIMIT_RAIL					          :Rail speed limit
 STR_PARAM_SPEED_LIMIT_RAIL_DESC				          :speed limit in mph: default 125, min 0 (no limit), max 65525
-STR_PARAM_CURVE_SPEED_MULTIPLIER_RAIL         :Rail curve speed limit factor
-STR_PARAM_CURVE_SPEED_MULTIPLIER_RAIL_DESC      :default 0, min 0, max 255{}{}turn speed is 55mph for a 45° turn at default value{}{}formula is 27.5×(value+2) in mph
+STR_PARAM_CURVE_SPEED_MULTIPLIER_RAIL         :Rail curve factor
+STR_PARAM_CURVE_SPEED_MULTIPLIER_RAIL_DESC      :default 2, min 0, max 255, vanilla 0{}{}formula is 27.5×(value+2) in mph for a curve length of 1
 
 STR_PARAM_CONSTRUCTION_COST_ELRL			        :Electric Rail construction cost factor
 STR_PARAM_CONSTRUCTION_COST_ELRL_DESC		        :default 12, min 0, max 65525
 STR_PARAM_SPEED_LIMIT_ELRL					          :Electric Rail speed limit
 STR_PARAM_SPEED_LIMIT_ELRL_DESC				          :speed limit in mph: default 165, min 0 (no limit), max 65525
-STR_PARAM_CURVE_SPEED_MULTIPLIER_ELRL         :Electric Rail curve speed limit factor
-STR_PARAM_CURVE_SPEED_MULTIPLIER_ELRL_DESC      :default 0, min 0, max 255{}{}turn speed is 55mph for a 45° turn at default value{}{}formula is 27.5×(value+2) in mph
+STR_PARAM_CURVE_SPEED_MULTIPLIER_ELRL         :Electric Rail curve factor
+STR_PARAM_CURVE_SPEED_MULTIPLIER_ELRL_DESC      :default 2, min 0, max 255, vanilla 0{}{}formula is 27.5×(value+2) in mph for a curve length of 1
 
 STR_PARAM_CONSTRUCTION_COST_MONO			        :Monorail construction cost factor
 STR_PARAM_CONSTRUCTION_COST_MONO_DESC		        :default 16, min 0, max 65525
 STR_PARAM_SPEED_LIMIT_MONO					          :Monorail speed limit
 STR_PARAM_SPEED_LIMIT_MONO_DESC				          :speed limit in mph: default 210, min 0 (no limit), max 65525
-STR_PARAM_CURVE_SPEED_MULTIPLIER_MONO         :Monorail curve speed limit factor
-STR_PARAM_CURVE_SPEED_MULTIPLIER_MONO_DESC      :default 1, min 0, max 255{}{}turn speed is 82mph for a 45° turn at default value{}{}formula is 27.5×(value+2) in mph
+STR_PARAM_CURVE_SPEED_MULTIPLIER_MONO         :Monorail curve factor
+STR_PARAM_CURVE_SPEED_MULTIPLIER_MONO_DESC      :default 5, min 0, max 255, vanilla 1{}{}formula is 27.5×(value+2) in mph for a curve length of 1
 
 STR_PARAM_CONSTRUCTION_COST_MGLV			        :Maglev construction cost factor
 STR_PARAM_CONSTRUCTION_COST_MGLV_DESC		        :default 24, min 0, max 65525
 STR_PARAM_SPEED_LIMIT_MGLV					          :Maglev speed limit
 STR_PARAM_SPEED_LIMIT_MGLV_DESC				          :speed limit in mph: default 400, min 0 (no limit), max 65525
-STR_PARAM_CURVE_SPEED_MULTIPLIER_MGLV         :Maglev curve speed limit factor
-STR_PARAM_CURVE_SPEED_MULTIPLIER_MGLV_DESC      :default 2, min 0, max 255{}{}turn speed is 110mph for a 45° turn at default value{}{}formula is 27.5×(value+2) in mph
+STR_PARAM_CURVE_SPEED_MULTIPLIER_MGLV         :Maglev curve factor
+STR_PARAM_CURVE_SPEED_MULTIPLIER_MGLV_DESC      :default 9, min 0, max 255, vanilla 2{}{}formula is 27.5×(value+2) in mph for a curve length of 1
 
 STR_PARAM_SIGNALS_DEFAULT					:Default
 STR_PARAM_SIGNALS_NUTS						:NUTS
