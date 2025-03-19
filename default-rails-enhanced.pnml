@@ -48,9 +48,9 @@ grf {
             type: int;
             name: string(STR_PARAM_CURVE_SPEED_MULTIPLIER_RAIL);
             desc: string(STR_PARAM_CURVE_SPEED_MULTIPLIER_RAIL_DESC);
-            min_value: 1;
+            min_value: 0;
             max_value: 255;
-            def_value: 2;
+            def_value: 0;
         }
     }
 
@@ -81,9 +81,9 @@ grf {
             type: int;
             name: string(STR_PARAM_CURVE_SPEED_MULTIPLIER_ELRL);
             desc: string(STR_PARAM_CURVE_SPEED_MULTIPLIER_ELRL_DESC);
-            min_value: 1;
+            min_value: 0;
             max_value: 255;
-            def_value: 2;
+            def_value: 0;
         }
     }
 
@@ -114,9 +114,9 @@ grf {
             type: int;
             name: string(STR_PARAM_CURVE_SPEED_MULTIPLIER_MONO);
             desc: string(STR_PARAM_CURVE_SPEED_MULTIPLIER_MONO_DESC);
-            min_value: 1;
+            min_value: 0;
             max_value: 255;
-            def_value: 3;
+            def_value: 1;
         }
     }
 
@@ -147,9 +147,9 @@ grf {
             type: int;
             name: string(STR_PARAM_CURVE_SPEED_MULTIPLIER_MGLV);
             desc: string(STR_PARAM_CURVE_SPEED_MULTIPLIER_MGLV_DESC);
-            min_value: 1;
+            min_value: 0;
             max_value: 255;
-            def_value: 4;
+            def_value: 2;
         }
     }
 
