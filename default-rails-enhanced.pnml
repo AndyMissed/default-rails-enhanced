@@ -178,6 +178,15 @@ grf {
         }
     }
 
+    param {
+        param_enable_compat {
+            type: bool;
+            name: string(STR_PARAM_ENABLE_COMPAT_NAME);
+            desc: string(STR_PARAM_ENABLE_COMPAT_DESC);
+            def_value: 0;
+        }
+    }
+
 }
 
 // jrook 20190120
@@ -318,8 +327,8 @@ railtypetable {
 item (FEAT_RAILTYPES, rt_rail) {
     property {
         label : "RAIL";
-        compatible_railtype_list : ["ELRL"];
-        powered_railtype_list : ["RAIL", "ELRL"];
+        compatible_railtype_list = (param_enable_compat) ? ["ELRL", "MONO", "MGLV"] : ["ELRL"];
+        powered_railtype_list = (param_enable_compat) ? ["RAIL", "ELRL", "MONO", "MGLV"] : ["RAIL", "ELRL"];
         construction_cost : param_construction_cost_rail;
         speed_limit : param_speed_limit_rail mph ;
         curve_speed_multiplier : param_curve_speed_multiplier_rail;
@@ -332,8 +341,8 @@ item (FEAT_RAILTYPES, rt_rail) {
 item (FEAT_RAILTYPES, rt_elrl) {
     property {
         label : "ELRL";
-        compatible_railtype_list : [];
-        powered_railtype_list : ["ELRL"];
+        compatible_railtype_list = (param_enable_compat) ? ["MONO", "MGLV"] : [];
+        powered_railtype_list = (param_enable_compat) ? ["ELRL", "MONO", "MGLV"] : ["ELRL"];
         construction_cost : param_construction_cost_elrl;
         speed_limit : param_speed_limit_elrl mph ;
         curve_speed_multiplier : param_curve_speed_multiplier_elrl;
@@ -346,8 +355,8 @@ item (FEAT_RAILTYPES, rt_elrl) {
 item (FEAT_RAILTYPES, rt_mono) {
     property {
         label : "MONO";
-        compatible_railtype_list : [];
-        powered_railtype_list : ["MONO"];
+        compatible_railtype_list = (param_enable_compat) ? ["MGLV"] : [];
+        powered_railtype_list = (param_enable_compat) ? ["MONO", "MGLV"] : ["MONO"];
         construction_cost : param_construction_cost_mono;
         speed_limit : param_speed_limit_mono mph ;
         curve_speed_multiplier : param_curve_speed_multiplier_mono;
