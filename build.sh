@@ -1,6 +1,6 @@
 #!/bin/bash
 # change the value of NMLC to reference your own nmlc installation
-NMLC="pyrun $HOME/Downloads/openttd/nml-0.5.2/nmlc"
+NMLC="python3 $HOME/.local/bin/nmlc"
 ./clean.sh
 mkdir wannaroo-rails
 $NMLC -c -p DEFAULT --clear-orphaned wannaroo-rails.pnml
