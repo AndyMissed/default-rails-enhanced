@@ -14,7 +14,7 @@ if (ttd_platform != PLATFORM_OPENTTD || openttd_version < version_openttd(1, 9, 
 }
 
 grf {
-    grfid: "AMI\01";
+    grfid: "AMc\01";
     name: string(STR_GRF_NAME);
     desc: string(STR_GRF_DESCRIPTION);
     version: 1000;
@@ -303,7 +303,7 @@ switch(FEAT_RAILTYPES, SELF, switch_signals_nuts, (extra_callback_info2 & 0x0000
     CB_FAILED;
 }
 
-switch (FEAT_RAILTYPES, SELF, switch_signals, param_customsignals) {
+switch(FEAT_RAILTYPES, SELF, switch_signals, param_customsignals) {
     1: switch_signals_nuts;
     2: switch_signals_metro;
     CB_FAILED;
@@ -324,56 +324,104 @@ railtypetable {
     NAAE // North Korean Trains
 }
 
+if (param_enable_compat) {
 item (FEAT_RAILTYPES, rt_rail) {
     property {
-        label : "RAIL";
-        compatible_railtype_list = (param_enable_compat) ? ["ELRL", "MONO", "MGLV"] : ["ELRL"];
-        powered_railtype_list = (param_enable_compat) ? ["RAIL", "ELRL", "MONO", "MGLV"] : ["RAIL", "ELRL"];
-        construction_cost : param_construction_cost_rail;
-        speed_limit : param_speed_limit_rail mph ;
-        curve_speed_multiplier : param_curve_speed_multiplier_rail;
+        label: "RAIL";
+        compatible_railtype_list: ["ELRL", "MONO", "MGLV"];
+        powered_railtype_list:    ["RAIL", "ELRL", "MONO", "MGLV"];
+        construction_cost:        param_construction_cost_rail;
+        speed_limit:              param_speed_limit_rail mph ;
+        curve_speed_multiplier:   param_curve_speed_multiplier_rail;
     }
     graphics {
         signals: switch_signals;
     }
 }
+} else {
+item (FEAT_RAILTYPES, rt_rail) {
+    property {
+        label: "RAIL";
+        compatible_railtype_list: ["ELRL"];
+        powered_railtype_list:    ["RAIL", "ELRL"];
+        construction_cost:        param_construction_cost_rail;
+        speed_limit:              param_speed_limit_rail mph ;
+        curve_speed_multiplier:   param_curve_speed_multiplier_rail;
+    }
+    graphics {
+        signals: switch_signals;
+    }
+}
+}
 
+if (param_enable_compat) {
 item (FEAT_RAILTYPES, rt_elrl) {
     property {
-        label : "ELRL";
-        compatible_railtype_list = (param_enable_compat) ? ["MONO", "MGLV"] : [];
-        powered_railtype_list = (param_enable_compat) ? ["ELRL", "MONO", "MGLV"] : ["ELRL"];
-        construction_cost : param_construction_cost_elrl;
-        speed_limit : param_speed_limit_elrl mph ;
-        curve_speed_multiplier : param_curve_speed_multiplier_elrl;
+        label: "ELRL";
+        compatible_railtype_list: ["MONO", "MGLV"];
+        powered_railtype_list:    ["ELRL", "MONO", "MGLV"];
+        construction_cost:        param_construction_cost_elrl;
+        speed_limit:              param_speed_limit_elrl mph ;
+        curve_speed_multiplier:   param_curve_speed_multiplier_elrl;
     }
     graphics {
         signals: switch_signals;
     }
 }
-
-item (FEAT_RAILTYPES, rt_mono) {
+} else {
+item (FEAT_RAILTYPES, rt_elrl) {
     property {
-        label : "MONO";
-        compatible_railtype_list = (param_enable_compat) ? ["MGLV"] : [];
-        powered_railtype_list = (param_enable_compat) ? ["MONO", "MGLV"] : ["MONO"];
-        construction_cost : param_construction_cost_mono;
-        speed_limit : param_speed_limit_mono mph ;
-        curve_speed_multiplier : param_curve_speed_multiplier_mono;
+        label: "ELRL";
+        compatible_railtype_list: [];
+        powered_railtype_list:    ["ELRL"];
+        construction_cost:        param_construction_cost_elrl;
+        speed_limit:              param_speed_limit_elrl mph ;
+        curve_speed_multiplier:   param_curve_speed_multiplier_elrl;
     }
     graphics {
         signals: switch_signals;
     }
+}
+}
+
+if (param_enable_compat) {
+item (FEAT_RAILTYPES, rt_mono) {
+    property {
+        label: "MONO";
+        compatible_railtype_list: ["MGLV"];
+        powered_railtype_list:    ["MONO", "MGLV"];
+        construction_cost:        param_construction_cost_mono;
+        speed_limit:              param_speed_limit_mono mph ;
+        curve_speed_multiplier:   param_curve_speed_multiplier_mono;
+    }
+    graphics {
+        signals: switch_signals;
+    }
+}
+} else {
+item (FEAT_RAILTYPES, rt_mono) {
+    property {
+        label: "MONO";
+        compatible_railtype_list: [];
+        powered_railtype_list:    ["MONO"];
+        construction_cost:        param_construction_cost_mono;
+        speed_limit:              param_speed_limit_mono mph ;
+        curve_speed_multiplier:   param_curve_speed_multiplier_mono;
+    }
+    graphics {
+        signals: switch_signals;
+    }
+}
 }
 
 item (FEAT_RAILTYPES, rt_mglv) {
     property {
-        label : "MGLV";
-        compatible_railtype_list : [];
-        powered_railtype_list : ["MGLV"];
-        construction_cost : param_construction_cost_mglv;
-        speed_limit : param_speed_limit_mglv mph ;
-        curve_speed_multiplier : param_curve_speed_multiplier_mglv;
+        label: "MGLV";
+        compatible_railtype_list: [];
+        powered_railtype_list:    ["MGLV"];
+        construction_cost:        param_construction_cost_mglv;
+        speed_limit:              param_speed_limit_mglv mph ;
+        curve_speed_multiplier:   param_curve_speed_multiplier_mglv;
     }
     graphics {
         signals: switch_signals;
