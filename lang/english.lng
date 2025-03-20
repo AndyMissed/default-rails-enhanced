@@ -1,5 +1,5 @@
 ﻿##grflangid 0x01
-STR_GRF_NAME								:Default Rails Enhanced
+STR_GRF_NAME								:Default Rails Enhanced v1.0r0
 STR_GRF_DESCRIPTION							:{}The default railtypes, enhanced with faster turn speeds and other customizable settings.{}{}Forked from Wannaroo Rails.{}{}License: GPL v2
 STR_GRF_URL									:https://github.com/AndyMissed/default-rails-enhanced
 
